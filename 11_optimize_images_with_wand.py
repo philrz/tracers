@@ -49,7 +49,9 @@ def resize_images(list_of_image_names):
 
 
 if __name__ == '__main__':
-    all_images = get_image_file_names(PATH, PATTERN)
+    with spandebug.SysdigTrace():
+        all_images = get_image_file_names(PATH, PATTERN)
     with spandebug.SysdigTrace():
         resize_images(all_images)
-    get_image_file_names(PATH, PATTERN)
+    with spandebug.SysdigTrace():
+        get_image_file_names(PATH, PATTERN)
