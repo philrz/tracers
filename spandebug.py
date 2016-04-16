@@ -31,6 +31,10 @@ class SysdigTrace():
             self.tags.append(prior.f_code.co_name + '()')
             e.append({ 'lineno': str(inspect.currentframe().f_back.f_lineno) })
             self.d.write(json.dumps(['>', self.tnum] + [self.tags] + [e]))
+        # elif event == "line":
+        #     e.append({ 'line': linecache.getline(__file__, inspect.currentframe().f_back.f_lineno - 1) })
+        #     e.append({ 'lineno': str(inspect.currentframe().f_back.f_lineno - 1) })
+        #     f.write(json.dumps(span + [e]))
         elif event == "return":
             e.append({ 'lineno': str(inspect.currentframe().f_back.f_lineno) })
             self.d.write(json.dumps(['<', self.tnum] + [self.tags] + [e]))
